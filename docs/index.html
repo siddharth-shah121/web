@@ -1,19 +1,37 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="style.css">
-
+<html>
 <head>
+    <meta charset="utf-8" />
     <title>Siddharth Shah</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+          display: flex;
+          flex-direction: column;
+          justify-content: center; /* vertical center */
+          align-items: center;     /* horizontal center */
+          height: 100vh;
+          margin: 0;
+        }
+
+        .box {
+          width: 300px;
+          height: 100px;
+          background-color: #00ff05;
+          text-align: center;
+          line-height: 100px;
+          box-shadow: 5px 5px 10px gray;
+          border: 2px dashed red; /* optional to see outline */
+        }
+    </style>
 </head>
 <body>
 
-<div class="box">
+<div class="box"></div>
+
+<div style="text-align: center; margin-top: 20px;">
+    5' 7"<br>
+    115 lbs
 </div>
+
 </body>
-<body>
-        <div style="text-align: center;">
-        5' 7"
-        </div>
-        <div style="text-align: center;">
-            115 lbs
-        </div>
-</body>
+</html>
