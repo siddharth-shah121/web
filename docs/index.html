@@ -3,30 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siddharth Shah</title>
+    <title>Obanai Galaxy</title>
     <style>
-        /* Reset margins and prevent white scroll */
-        html, body {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          overflow: hidden;
-          font-family: Arial, sans-serif;
-          color: white;
-        }
-
-        /* Starry background animation */
+        /* Make galaxy background fill the screen and stay fixed */
         body {
-          background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-          overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            overflow: hidden; /* prevent scroll */
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
         }
 
-        /* Star layer animation */
-        .stars {
-          width: 100%;
-          height: 100%;
-          background: transparent url('https://i.ibb.co/0qJz7sH/stars.png') repeat top center;
-          position: absolute;
-          top: 0;
-          left: 0;
-          animation: moveStars 200s linear infinite;
+        /* Obanai image styling */
+        .character {
+            width: 300px; /* adjust size as needed */
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Name styling */
+        h1 {
+            font-size: 2em;
+            text-shadow: 2px 2px 8px black;
+        }
+    </style>
+</head>
+<body>
+<!-- Obanai image -->
+<img class="character" src="https://upload.wikimedia.org/wikipedia/en/5/5c/Obanai_Iguro.png" alt="Obanai from Demon Slayer">
+
+<!-- Your name -->
+<h1>SIDDHARTH SHAH</h1>
+</body>
+</html>
