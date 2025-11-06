@@ -1,37 +1,86 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <title>Siddharth Shah</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        body {
-          display: flex;
-          flex-direction: column;
-          justify-content: center; /* vertical center */
-          align-items: center;     /* horizontal center */
-          height: 100vh;
+        /* Make the page fill the screen and hide scrollbars */
+        html, body {
           margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden;
+          font-family: 'Poppins', sans-serif;
+          color: white;
         }
 
+        /* Starry animated background */
+        body {
+          background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+          overflow: hidden;
+        }
+
+        .stars {
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          position: absolute;
+          top: 0;
+          left: 0;
+          box-shadow:
+            1000px 200px #fff,
+            300px 700px #fff,
+            700px 900px #fff,
+            900px 400px #fff,
+            1200px 300px #fff,
+            400px 100px #fff,
+            50px 400px #fff,
+            1300px 700px #fff,
+            1100px 200px #fff;
+          animation: animStar 100s linear infinite;
+        }
+
+        @keyframes animStar {
+          from { transform: translateY(0px); }
+          to { transform: translateY(-2000px); }
+        }
+
+        /* Center container using flexbox */
+        .center {
+          position: relative;
+          z-index: 1;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        /* The box */
         .box {
           width: 300px;
-          height: 100px;
-          background-color: #00ff05;
-          text-align: center;
-          line-height: 100px;
-          box-shadow: 5px 5px 10px gray;
-          border: 2px dashed red; /* optional to see outline */
+          height: 150px;
+          background: rgba(0, 255, 5, 0.8);
+          border-radius: 15px;
+          box-shadow: 0 0 20px #00ff5a, 0 0 40px #00ff5a;
+          margin-bottom: 30px;
+        }
+
+        /* Name text */
+        .name {
+          font-size: 28px;
+          font-weight: 600;
+          text-shadow: 0 0 10px #00ffcc;
         }
     </style>
 </head>
 <body>
+<div class="stars"></div>
 
-<div class="box"></div>
-
-<div style="text-align: center; margin-top: 20px;">
-    5' 7"<br>
-    115 lbs
+<div class="center">
+    <div class="box"></div>
+    <div class="name">Siddharth Shah</div>
 </div>
-
 </body>
 </html>
