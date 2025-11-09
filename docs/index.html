@@ -7,6 +7,7 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Galaxy background */
         body {
             margin: 0;
             padding: 0;
@@ -14,7 +15,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
             background-size: cover;
             color: white;
             font-family: 'Arial', sans-serif;
@@ -26,19 +27,21 @@
             font-size: 3em;
             text-shadow: 2px 2px 10px black;
             margin-top: 40px;
+            color: #d3a4ff;
         }
 
         h2 {
             margin-top: 50px;
             font-size: 1.8em;
             text-shadow: 1px 1px 6px black;
+            color: #cba0ff;
         }
 
         /* GitHub contributions image */
         .github-graph {
             margin-top: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            box-shadow: 0 0 15px rgba(160, 60, 255, 0.8);
             width: 90%;
             max-width: 700px;
         }
@@ -58,10 +61,11 @@
         .skill-name {
             font-weight: bold;
             margin-bottom: 5px;
+            color: #e4bfff;
         }
 
         .bar {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
             overflow: hidden;
             height: 20px;
@@ -70,9 +74,10 @@
         .bar-fill {
             height: 100%;
             border-radius: 10px;
-            background-color: #00ffdd;
+            background-color: #b46bff;
             width: 0;
             transition: width 2s ease-in-out;
+            box-shadow: 0 0 10px #b46bff;
         }
 
         /* Animate bars on load */
@@ -90,13 +95,13 @@
         .socials a {
             margin: 0 20px;
             font-size: 2.5em;
-            color: #00ffdd;
+            color: #c793ff;
             transition: 0.3s;
         }
 
         .socials a:hover {
             color: #ffffff;
-            text-shadow: 2px 2px 8px black;
+            text-shadow: 0 0 10px #b46bff;
         }
     </style>
 </head>
