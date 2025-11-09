@@ -3,32 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siddharth Shah</title>
-    <!-- Font Awesome CDN for social icons -->
+    <title>Siddharth Shah | Galaxy Profile</title>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* Full-screen galaxy background */
         body {
             margin: 0;
             padding: 0;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
             background-size: cover;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
             color: white;
+            font-family: 'Arial', sans-serif;
             text-align: center;
+            overflow-x: hidden;
         }
 
         h1 {
             font-size: 3em;
             text-shadow: 2px 2px 10px black;
-            margin-bottom: 40px;
+            margin-top: 40px;
+        }
+
+        h2 {
+            margin-top: 50px;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 6px black;
+        }
+
+        /* GitHub contributions image */
+        .github-graph {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            width: 90%;
+            max-width: 700px;
+        }
+
+        /* Skill bars section */
+        .skills {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .bar {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            height: 20px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background-color: #00ffdd;
+            width: 0;
+            transition: width 2s ease-in-out;
+        }
+
+        /* Animate bars on load */
+        body.loaded .bar-fill.python { width: 85%; }
+        body.loaded .bar-fill.javascript { width: 75%; }
+        body.loaded .bar-fill.html { width: 90%; }
+        body.loaded .bar-fill.css { width: 80%; }
+        body.loaded .bar-fill.java { width: 70%; }
+
+        /* Social icons */
+        .socials {
+            margin-top: 50px;
         }
 
         .socials a {
@@ -47,13 +103,46 @@
 <body>
 <h1>SIDDHARTH SHAH</h1>
 
-<div class="socials">
-    <a href="https://discord.com/users/pa1n2817" target="_blank" title="Discord">
-        <i class="fab fa-discord"></i>
-    </a>
-    <a href="https://github.com/siddharth-shah121" target="_blank" title="GitHub">
-        <i class="fab fa-github"></i>
-    </a>
+<!-- GitHub contribution graph -->
+<h2>GitHub Contributions</h2>
+<img class="github-graph" src="https://ghchart.rshah.org/siddharth-shah121" alt="GitHub Contributions Chart">
+
+<!-- Language proficiency -->
+<h2>Programming Language Proficiency</h2>
+<div class="skills">
+    <div class="skill">
+        <div class="skill-name">Python</div>
+        <div class="bar"><div class="bar-fill python"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">JavaScript</div>
+        <div class="bar"><div class="bar-fill javascript"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">HTML</div>
+        <div class="bar"><div class="bar-fill html"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">CSS</div>
+        <div class="bar"><div class="bar-fill css"></div></div>
+    </div>
+    <div class="skill">
+        <div class="skill-name">Java</div>
+        <div class="bar"><div class="bar-fill java"></div></div>
+    </div>
 </div>
+
+<!-- Social links -->
+<div class="socials">
+    <a href="https://discord.com/users/pa1n2817" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+    <a href="https://github.com/siddharth-shah121" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+</div>
+
+<script>
+    // Trigger animation for bars after page loads
+    window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+    });
+</script>
 </body>
 </html>
