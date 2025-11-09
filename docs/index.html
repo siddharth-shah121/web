@@ -1,440 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Siddharth Shah | Galaxy Profile</title>
-
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        :root{
-          --purple-1:#6a0dad;
-          --purple-2:#b46bff;
-          --accent:#c793ff;
-          --bg-dark:#050007;
-        }
-
-        html,body{
-          height:100%;
-          margin:0;
-          font-family:Arial, Helvetica, sans-serif;
-          background: radial-gradient(ellipse at bottom, #0b0020 0%, #000000 65%, #030006 100%);
-          color:#eae6ff;
-          overflow-x:hidden;
-        }
-
-        /* full-screen animated star canvas */
-        #starfield {
-          position:fixed;
-          inset:0;
-          z-index:0;
-          pointer-events:none;
-          display:block;
-        }
-
-        /* subtle nebula glow overlay */
-        .nebula {
-          position:fixed;
-          inset:0;
-          z-index:0;
-          pointer-events:none;
-          background: radial-gradient(40% 40% at 15% 20%, rgba(106,13,173,0.12), transparent 12%),
-                      radial-gradient(30% 30% at 80% 70%, rgba(180,107,255,0.09), transparent 15%);
-          mix-blend-mode:screen;
-        }
-
-        /* page container above starfield */
-        .container {
-          position:relative;
-          z-index:1;
-          min-height:100vh;
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          padding:48px 20px 80px;
-          box-sizing:border-box;
+        body {
+          margin: 0;
+          padding: 0;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          background: radial-gradient(circle at center, #0a0015 0%, #000 100%);
+          overflow: hidden;
+          color: white;
+          font-family: 'Arial', sans-serif;
+          text-align: center;
         }
 
         h1 {
-          margin:0;
-          font-size:3rem;
-          color:var(--accent);
-          text-shadow:0 0 18px rgba(180,107,255,0.18), 0 6px 18px rgba(0,0,0,0.6);
+          margin-top: 40px;
+          font-size: 3em;
+          color: #c78bff;
+          text-shadow: 0 0 20px #a14fff;
+        }
+
+        /* Social icons below name */
+        .socials {
+          margin-top: 10px;
+          margin-bottom: 40px;
+        }
+
+        .socials a {
+          margin: 0 20px;
+          font-size: 2.5em;
+          color: #c78bff;
+          transition: 0.3s;
+        }
+
+        .socials a:hover {
+          color: #ffffff;
+          text-shadow: 0 0 10px #b46bff;
         }
 
         h2 {
-          margin:28px 0 12px;
-          font-size:1.35rem;
-          color:#e9dbff;
-          text-shadow:0 0 8px rgba(96,16,138,0.12);
+          font-size: 1.8em;
+          text-shadow: 1px 1px 6px black;
+          color: #cba0ff;
+          margin-bottom: 10px;
         }
 
-        /* contributions container */
+        /* GitHub contribution graph */
         .github-graph {
-          width:90%;
-          max-width:760px;
-          background:linear-gradient(180deg, rgba(10,5,18,0.7), rgba(4,0,10,0.6));
-          padding:18px;
-          border-radius:12px;
-          box-shadow:0 10px 30px rgba(90,20,140,0.15);
-          border:1px solid rgba(180,107,255,0.08);
-          margin-top:8px;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(180, 60, 255, 0.8);
+          width: 90%;
+          max-width: 700px;
         }
 
-        .github-graph img {
-          width:100%;
-          display:block;
-          border-radius:8px;
-          background:#07000f; /* dark fallback bg behind chart */
+        /* Contribution count text */
+        .contrib-count {
+          margin-top: 10px;
+          font-size: 1.2em;
+          color: #d9b3ff;
+          text-shadow: 0 0 8px #a855ff;
         }
 
-        /* skills */
-        .skills {
-          width:90%;
-          max-width:700px;
-          margin-top:28px;
-          text-align:left;
+        /* Purple stars animation */
+        .stars {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+          overflow: hidden;
+          top: 0;
+          left: 0;
+          z-index: -1;
         }
 
-        .skill {
-          margin-bottom:16px;
+        .star {
+          position: absolute;
+          width: 2px;
+          height: 2px;
+          background: #b46bff;
+          border-radius: 50%;
+          opacity: 0.7;
+          animation: twinkle 3s infinite ease-in-out;
         }
 
-        .skill-name{
-          font-weight:700;
-          margin-bottom:8px;
-          color:#efdfff;
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.3); }
         }
 
-        .bar {
-          background:rgba(255,255,255,0.06);
-          border-radius:12px;
-          overflow:hidden;
-          height:20px;
-        }
-
-        .bar-fill{
-          height:100%;
-          width:0;
-          border-radius:12px;
-          box-shadow:0 0 14px rgba(180,107,255,0.22);
-          transition:width 1.7s cubic-bezier(.2,.9,.3,1);
-          background:linear-gradient(90deg,var(--purple-2),var(--purple-1));
-        }
-
-        /* percentage label on right */
-        .skill-row {
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-        }
-
-        .pct {
-          color:#e6dbff;
-          font-weight:700;
-          margin-left:12px;
-          min-width:52px;
-          text-align:right;
-        }
-
-        /* socials */
-        .socials {
-          margin-top:28px;
-          display:flex;
-          gap:22px;
-          align-items:center;
-        }
-
-        .socials a{
-          color:var(--accent);
-          font-size:2rem;
-          text-decoration:none;
-          transition:transform .18s ease, text-shadow .18s ease;
-        }
-
-        .socials a:hover{
-          transform:translateY(-4px);
-          text-shadow:0 0 18px rgba(180,107,255,0.35);
-          color:#fff;
-        }
-
-        /* repo list */
-        .repos {
-          width:90%;
-          max-width:760px;
-          margin-top:20px;
-          display:grid;
-          gap:12px;
-          grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-        }
-
-        .repo {
-          background:linear-gradient(180deg, rgba(8,4,12,0.55), rgba(8,4,12,0.45));
-          padding:12px;
-          border-radius:10px;
-          border:1px solid rgba(120,50,200,0.06);
-          box-shadow:0 6px 18px rgba(50,10,80,0.12);
-          color:#efe6ff;
-          min-height:64px;
-          display:flex;
-          flex-direction:column;
-          gap:6px;
-        }
-
-        .repo a.repo-name{
-          color:var(--accent);
-          font-weight:700;
-          text-decoration:none;
-        }
-
-        .repo .meta{
-          display:flex;
-          gap:10px;
-          align-items:center;
-          flex-wrap:wrap;
-          font-size:0.9rem;
-          color:#d9cff8;
-        }
-
-        .muted { color:#bfaee6; font-size:0.95rem; }
-
-        /* small responsive tweaks */
-        @media (max-width:520px){
-          h1{font-size:2.2rem;}
-          .socials a{font-size:1.6rem;}
-        }
     </style>
 </head>
 <body>
+<div class="stars" id="stars"></div>
 
-<!-- purple star canvas -->
-<canvas id="starfield"></canvas>
-<div class="nebula" aria-hidden="true"></div>
+<h1>SIDDHARTH SHAH</h1>
 
-<div class="container">
-    <h1>SIDDHARTH SHAH</h1>
-
-    <h2>GitHub Contributions</h2>
-    <div class="github-graph" id="gh-graph">
-        <!-- dark purple-themed ghchart (uses hex color param) -->
-        <!-- ghchart allows a color code (no #); using 6a0dad (purple) -->
-        <img src="https://ghchart.rshah.org/6a0dad/siddharth-shah121" alt="GitHub contributions chart for siddharth-shah121">
-    </div>
-
-    <h2>Public Repositories</h2>
-    <div id="repos" class="repos">
-        <!-- JS will populate public repos here -->
-        <div class="muted">Loading public repositories…</div>
-    </div>
-
-    <h2>Programming Language Proficiency</h2>
-    <div class="skills" aria-hidden="false">
-        <div class="skill">
-            <div class="skill-row">
-                <div class="skill-name">Python</div>
-                <div class="pct">85%</div>
-            </div>
-            <div class="bar"><div class="bar-fill python" style="width:0;"></div></div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-row">
-                <div class="skill-name">JavaScript</div>
-                <div class="pct">75%</div>
-            </div>
-            <div class="bar"><div class="bar-fill javascript" style="width:0;"></div></div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-row">
-                <div class="skill-name">HTML</div>
-                <div class="pct">90%</div>
-            </div>
-            <div class="bar"><div class="bar-fill html" style="width:0;"></div></div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-row">
-                <div class="skill-name">CSS</div>
-                <div class="pct">80%</div>
-            </div>
-            <div class="bar"><div class="bar-fill css" style="width:0;"></div></div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-row">
-                <div class="skill-name">Java</div>
-                <div class="pct">70%</div>
-            </div>
-            <div class="bar"><div class="bar-fill java" style="width:0;"></div></div>
-        </div>
-
-        <div class="skill">
-            <div class="skill-row">
-                <div class="skill-name">Kotlin</div>
-                <div class="pct">60%</div>
-            </div>
-            <div class="bar"><div class="bar-fill kotlin" style="width:0;"></div></div>
-        </div>
-    </div>
-
-    <div class="socials" aria-label="social links">
-        <a href="https://discord.com/users/pa1n2817" target="_blank" rel="noopener noreferrer" title="Discord"><i class="fab fa-discord"></i></a>
-        <a href="https://github.com/siddharth-shah121" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-    </div>
+<!-- Social icons under name -->
+<div class="socials">
+    <a href="https://discord.com/users/pa1n2817" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+    <a href="https://github.com/siddharth-shah121" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.instagram.com/sid_shah0/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
 </div>
 
+<!-- GitHub contributions -->
+<h2>GitHub Contributions</h2>
+<img class="github-graph" src="https://ghchart.rshah.org/b46bff/siddharth-shah121" alt="GitHub Contributions Chart">
+<div class="contrib-count">Total Contributions: <span id="contribs">Loading...</span></div>
+
 <script>
-    /* --------------------------
-       Starfield canvas (purple stars & twinkle)
-       -------------------------- */
-    (function(){
-      const canvas = document.getElementById('starfield');
-      const ctx = canvas.getContext('2d');
-      let stars = [];
-      let w = canvas.width = innerWidth;
-      let h = canvas.height = innerHeight;
-      const STAR_COUNT = Math.round((w*h) / 12000); // scale with screen
-
-      function rand(min,max){ return Math.random()*(max-min)+min; }
-
-      function init(){
-        stars = [];
-        for(let i=0;i<STAR_COUNT;i++){
-          stars.push({
-            x: Math.random()*w,
-            y: Math.random()*h,
-            r: Math.random()*1.7 + 0.3,
-            alpha: Math.random()*0.7 + 0.2,
-            twinkle: Math.random()*0.02 + 0.003,
-            hue: rand(260,290) // purple-ish hue range
-          });
-        }
-      }
-
-      function resize(){
-        w = canvas.width = innerWidth;
-        h = canvas.height = innerHeight;
-        init();
-      }
-
-      function draw(){
-        ctx.clearRect(0,0,w,h);
-        // faint purple vignette-ish star scatter (very subtle)
-        for(const s of stars){
-          // twinkle
-          s.alpha += (Math.sin(Date.now()*s.twinkle + s.x*0.0007) * 0.006);
-          if (s.alpha < 0.05) s.alpha = 0.05;
-          if (s.alpha > 1) s.alpha = 1;
-          ctx.beginPath();
-          const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r*6);
-          g.addColorStop(0, `hsla(${s.hue},70%,85%,${s.alpha})`);
-          g.addColorStop(0.2, `hsla(${s.hue},60%,65%,${s.alpha*0.55})`);
-          g.addColorStop(1, `rgba(0,0,0,0)`);
-          ctx.fillStyle = g;
-          ctx.arc(s.x, s.y, s.r*6, 0, Math.PI*2);
-          ctx.fill();
-          // core
-          ctx.beginPath();
-          ctx.fillStyle = `hsla(${s.hue},80%,90%,${Math.min(1, s.alpha)})`;
-          ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-          ctx.fill();
-        }
-        requestAnimationFrame(draw);
-      }
-
-      window.addEventListener('resize', resize);
-      init();
-      draw();
-    })();
-
-    /* --------------------------
-       Animate skill bars on load
-       -------------------------- */
-    window.addEventListener('load', () => {
-      // set widths based on percentages already displayed
-      const mapping = {
-        python: '85%',
-        javascript: '75%',
-        html: '90%',
-        css: '80%',
-        java: '70%',
-        kotlin: '60%'
-      };
-      for(const cls in mapping){
-        const el = document.querySelector('.bar-fill.'+cls);
-        if(el) el.style.width = mapping[cls];
-      }
-
-      // fetch and render repos
-      fetchRepos();
-    });
-
-    /* --------------------------
-       Fetch public repos and render them
-       -------------------------- */
-    async function fetchRepos(){
-      const username = 'siddharth-shah121';
-      const target = document.getElementById('repos');
-      try{
-        const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
-        if(!res.ok) throw new Error('Failed to fetch repos');
-        const data = await res.json();
-        if(!Array.isArray(data) || data.length===0){
-          target.innerHTML = '<div class="muted">No public repositories found.</div>';
-          return;
-        }
-
-        // sort by stargazers_count desc then updated
-        data.sort((a,b)=> {
-          const s = (b.stargazers_count - a.stargazers_count);
-          if(s!==0) return s;
-          return new Date(b.updated_at) - new Date(a.updated_at);
-        });
-
-        // build repo cards; limit to first 20
-        const slice = data.slice(0,20);
-        target.innerHTML = '';
-        slice.forEach(repo=>{
-          const card = document.createElement('div');
-          card.className = 'repo';
-          const name = document.createElement('a');
-          name.className = 'repo-name';
-          name.href = repo.html_url;
-          name.target = '_blank';
-          name.rel = 'noopener noreferrer';
-          name.textContent = repo.name;
-
-          const desc = document.createElement('div');
-          desc.className = 'muted';
-          desc.textContent = repo.description ? repo.description : '';
-
-          const meta = document.createElement('div');
-          meta.className = 'meta';
-          const lang = document.createElement('div');
-          lang.innerHTML = repo.language ? `<i class="fas fa-code"></i> ${repo.language}` : '';
-          const stars = document.createElement('div');
-          stars.innerHTML = `<i class="fas fa-star"></i> ${repo.stargazers_count}`;
-          const updated = document.createElement('div');
-          const d = new Date(repo.updated_at);
-          updated.textContent = `Updated ${d.toLocaleDateString()}`;
-
-          meta.appendChild(lang);
-          meta.appendChild(stars);
-          meta.appendChild(updated);
-
-          card.appendChild(name);
-          if(desc.textContent) card.appendChild(desc);
-          card.appendChild(meta);
-          target.appendChild(card);
-        });
-      }catch(err){
-        console.error(err);
-        target.innerHTML = '<div class="muted">Could not load repositories. (Rate limit or network error.)</div>';
-      }
+    // Purple star field generation
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 3) + 's';
+      star.style.opacity = Math.random();
+      star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+      starsContainer.appendChild(star);
     }
+
+    // Fetch lifetime contributions
+    fetch('https://api.github.com/users/siddharth-shah121')
+      .then(response => response.json())
+      .then(data => {
+        // GitHub API doesn’t give total lifetime directly, so approximate using followers or fallback message
+        document.getElementById('contribs').innerText = 'Check on your GitHub profile (requires GraphQL token)';
+      })
+      .catch(() => {
+        document.getElementById('contribs').innerText = 'Unavailable';
+      });
 </script>
 </body>
 </html>
