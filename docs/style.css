@@ -1,9 +1,0 @@
-.box {
-  width: 300px;
-  height: 100px;
-  background-color: #00ff05; /* ← add semicolon here */
-  margin: 0 auto; /* centers horizontally */
-  text-align: center;
-  line-height: 100px; /* optional: centers text vertically */
-  box-shadow: 5px 5px 10px gray;
-}
